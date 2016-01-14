@@ -24,6 +24,10 @@ class WeatherList extends Component {
   }
 
   renderWeather(cityData) {
+    if (cityData.cod === '404') {
+      return;
+    }
+
     const name = cityData.city.name;
     const temps = _.map(cityData.list.map(weather => weather.main.temp), (temp) => temp - 273.15);
     const humidities = cityData.list.map(weather => weather.main.humidity);
